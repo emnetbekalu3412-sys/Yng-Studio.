@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#050505">
 <title>YNG Studio | Graphic Design Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,6 +11,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
+
+:root{
+    --gold:#d4af37;
+    --bg:#050505;
+    --text:#ffffff;
+    --gray:#b8b8b8;
+    --card:rgba(255,255,255,0.04);
+}
+
 *{
     margin:0;
     padding:0;
@@ -23,52 +33,21 @@ html{
 body{
     font-family:'Montserrat',sans-serif;
     background:
-        radial-gradient(circle at top left,#1a140a 0%,#050505 35%),
-        radial-gradient(circle at bottom right,#141006 0%,#050505 30%);
-    color:white;
+    radial-gradient(circle at top left,#1d1507 0%,#050505 35%),
+    radial-gradient(circle at bottom right,#1b1205 0%,#050505 30%);
+    color:var(--text);
     overflow-x:hidden;
+    position:relative;
 }
 
-/* LIGHT MODE */
-
-body[data-theme="light"]{
-    background:#f5f5f5;
-    color:#111;
-}
-
-body[data-theme="light"] nav{
-    background:rgba(255,255,255,0.7);
-    border-bottom:1px solid rgba(0,0,0,0.08);
-}
-
-body[data-theme="light"] nav a{
-    color:#111;
-}
-
-body[data-theme="light"] .hero-text p,
-body[data-theme="light"] .about p,
-body[data-theme="light"] .card-content p,
-body[data-theme="light"] .contact p,
-body[data-theme="light"] footer{
-    color:#555;
-}
-
-body[data-theme="light"] .card,
-body[data-theme="light"] .tool{
-    background:white;
-    border:1px solid rgba(0,0,0,0.08);
-}
-
-body[data-theme="light"] .contact{
-    border-top:1px solid rgba(0,0,0,0.08);
-}
-
-body[data-theme="light"] footer{
-    border-top:1px solid rgba(0,0,0,0.08);
-}
-
-body[data-theme="light"] ::-webkit-scrollbar-track{
-    background:#eaeaea;
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+    opacity:0.03;
+    pointer-events:none;
+    z-index:9999;
 }
 
 .container{
@@ -77,16 +56,13 @@ body[data-theme="light"] ::-webkit-scrollbar-track{
     margin:auto;
 }
 
-/* NAVBAR */
-
 nav{
     position:sticky;
     top:0;
     z-index:1000;
     backdrop-filter:blur(14px);
     background:rgba(5,5,5,0.45);
-    border-bottom:1px solid rgba(255,255,255,0.05);
-    width:100%;
+    border-bottom:1px solid rgba(255,255,255,0.06);
 }
 
 .nav-container{
@@ -94,35 +70,29 @@ nav{
     justify-content:space-between;
     align-items:center;
     padding:22px 0;
-    gap:20px;
 }
 
 .logo{
     font-size:34px;
     font-weight:900;
-    color:#d4af37;
-    letter-spacing:1px;
-    white-space:nowrap;
+    color:var(--gold);
 }
 
 .logo span{
-    color:#ffffff;
+    color:white;
 }
 
 nav ul{
     display:flex;
     list-style:none;
     gap:35px;
-    flex-wrap:wrap;
-    justify-content:center;
 }
 
 nav a{
     text-decoration:none;
     color:white;
-    transition:0.3s;
     position:relative;
-    font-size:16px;
+    transition:0.3s;
 }
 
 nav a::after{
@@ -130,82 +100,106 @@ nav a::after{
     position:absolute;
     left:0;
     bottom:-6px;
-    width:0%;
+    width:0;
     height:2px;
-    background:#d4af37;
+    background:var(--gold);
     transition:0.3s;
 }
 
-nav a:hover{
-    color:#d4af37;
+nav a:hover,
+nav a.active{
+    color:var(--gold);
 }
 
-nav a:hover::after{
+nav a:hover::after,
+nav a.active::after{
     width:100%;
 }
 
-/* HERO */
-
 .hero{
-    min-height:90vh;
+    min-height:92vh;
     display:grid;
     grid-template-columns:1fr 1fr;
     align-items:center;
     gap:60px;
-    padding:30px 0 70px;
+    padding:40px 0 80px;
 }
 
 .hero-text h1{
-    font-size:90px;
-    line-height:0.95;
-    margin-bottom:20px;
-    letter-spacing:-2px;
+    font-size:95px;
+    line-height:0.92;
+    margin-bottom:25px;
+    letter-spacing:-3px;
 }
 
 .hero-text h1 span{
-    color:#d4af37;
+    color:var(--gold);
 }
 
 .hero-text p{
-    color:#bdbdbd;
-    line-height:1.8;
+    color:var(--gray);
     font-size:18px;
-    max-width:500px;
+    line-height:1.9;
+    max-width:540px;
 }
 
 .hero-btn{
     display:inline-block;
     margin-top:35px;
-    background:#d4af37;
+    background:var(--gold);
     color:white;
+    text-decoration:none;
     padding:18px 38px;
     border-radius:14px;
-    text-decoration:none;
     transition:0.35s;
     box-shadow:0 10px 30px rgba(212,175,55,0.35);
 }
 
 .hero-btn:hover{
-    transform:translateY(-6px) scale(1.03);
-    box-shadow:0 15px 40px rgba(212,175,55,0.45);
+    transform:translateY(-6px);
+    box-shadow:0 15px 40px rgba(212,175,55,0.5);
 }
 
 .hero-image{
     display:flex;
     justify-content:center;
+    position:relative;
+}
+
+.hero-image::before{
+    content:"";
+    position:absolute;
+    width:320px;
+    height:320px;
+    background:rgba(212,175,55,0.18);
+    filter:blur(100px);
+    border-radius:50%;
+    z-index:0;
 }
 
 .hero-image img{
     width:100%;
     max-width:420px;
-    height:auto;
-    object-fit:contain;
     border-radius:30px;
+    position:relative;
+    z-index:2;
+    animation:float 5s ease-in-out infinite;
     border:1px solid rgba(255,255,255,0.08);
     box-shadow:0 20px 60px rgba(0,0,0,0.5);
 }
 
-/* ABOUT */
+@keyframes float{
+    0%{transform:translateY(0px)}
+    50%{transform:translateY(-12px)}
+    100%{transform:translateY(0px)}
+}
+
+.section-title{
+    font-size:13px;
+    letter-spacing:4px;
+    color:var(--gold);
+    margin-bottom:25px;
+}
 
 .about{
     padding:120px 0;
@@ -214,41 +208,63 @@ nav a:hover::after{
     gap:70px;
 }
 
-.section-title{
-    font-size:14px;
-    letter-spacing:4px;
-    color:#d4af37;
-    margin-bottom:25px;
-}
-
 .about p{
-    color:#bdbdbd;
+    color:var(--gray);
     line-height:2;
-    font-size:16px;
 }
 
 .tools{
     display:flex;
     flex-wrap:wrap;
-    gap:20px;
+    gap:18px;
     margin-top:30px;
 }
 
 .tool{
-    background:rgba(255,255,255,0.04);
+    padding:16px 22px;
+    background:var(--card);
     border:1px solid rgba(255,255,255,0.06);
-    padding:18px 24px;
     border-radius:14px;
-    backdrop-filter:blur(10px);
     transition:0.3s;
 }
 
 .tool:hover{
     transform:translateY(-4px);
-    border-color:#d4af37;
+    border-color:var(--gold);
 }
 
-/* WORK */
+.services{
+    padding-bottom:120px;
+}
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-top:35px;
+}
+
+.service-card{
+    background:var(--card);
+    border:1px solid rgba(255,255,255,0.06);
+    padding:35px;
+    border-radius:22px;
+    transition:0.35s;
+}
+
+.service-card:hover{
+    transform:translateY(-8px);
+    border-color:var(--gold);
+}
+
+.service-card h3{
+    margin-bottom:15px;
+}
+
+.service-card p{
+    color:var(--gray);
+    line-height:1.8;
+}
 
 .work{
     padding-bottom:120px;
@@ -262,32 +278,46 @@ nav a:hover::after{
 }
 
 .card{
-    background:rgba(255,255,255,0.03);
-    border-radius:25px;
+    position:relative;
     overflow:hidden;
+    border-radius:24px;
+    background:var(--card);
     border:1px solid rgba(255,255,255,0.06);
     transition:0.4s;
-    backdrop-filter:blur(10px);
-    box-shadow:0 20px 50px rgba(0,0,0,0.18);
+}
+
+.card::before{
+    content:"VIEW PROJECT ↗";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.7);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    letter-spacing:2px;
+    opacity:0;
+    transition:0.4s;
+    z-index:2;
+}
+
+.card:hover::before{
+    opacity:1;
 }
 
 .card:hover{
     transform:translateY(-10px);
-    border-color:#d4af37;
-    box-shadow:0 20px 40px rgba(0,0,0,0.4);
+    border-color:var(--gold);
 }
 
 .card img{
     width:100%;
-    height:auto;
     display:block;
-    object-fit:contain;
-    background:#111;
     transition:0.5s;
 }
 
 .card:hover img{
-    transform:scale(1.03);
+    transform:scale(1.05);
 }
 
 .card-content{
@@ -300,11 +330,9 @@ nav a:hover::after{
 }
 
 .card-content p{
-    color:#a8a8a8;
-    line-height:1.7;
+    color:var(--gray);
+    line-height:1.8;
 }
-
-/* CONTACT */
 
 .contact{
     padding:120px 0;
@@ -315,151 +343,38 @@ nav a:hover::after{
 .contact h2{
     font-size:60px;
     margin-bottom:20px;
-    letter-spacing:-1px;
 }
 
-.contact p{
-    color:#a8a8a8;
-    margin-bottom:12px;
-}
-
-.contact-btn{
-    display:inline-block;
+.contact-links{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
     margin-top:30px;
-    background:#d4af37;
-    color:white;
-    padding:18px 36px;
-    border-radius:12px;
+}
+
+.contact-links a{
     text-decoration:none;
-    transition:0.35s;
-    box-shadow:0 10px 30px rgba(212,175,55,0.35);
+    color:white;
+    background:var(--card);
+    padding:16px 24px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,0.06);
+    transition:0.3s;
 }
 
-.contact-btn:hover{
-    transform:translateY(-5px);
-    box-shadow:0 15px 40px rgba(212,175,55,0.45);
+.contact-links a:hover{
+    transform:translateY(-4px);
+    border-color:var(--gold);
+    color:var(--gold);
 }
-
-/* FOOTER */
 
 footer{
     padding:30px 0 50px;
     text-align:center;
-    color:#777;
+    color:#7c7c7c;
     border-top:1px solid rgba(255,255,255,0.08);
 }
-
-/* SCROLLBAR */
-
-::-webkit-scrollbar{
-    width:10px;
-}
-
-::-webkit-scrollbar-track{
-    background:#050505;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#d4af37;
-    border-radius:20px;
-}
-
-/* THEME BUTTON */
-
-#theme-toggle{
-    background:#d4af37;
-    color:white;
-    border:none;
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:0.3s;
-    flex-shrink:0;
-}
-
-#theme-toggle:hover{
-    transform:translateY(-3px) rotate(10deg);
-}
-
-/* RESPONSIVE */
-
-@media(max-width:950px){
-
-    .nav-container{
-        flex-direction:column;
-        align-items:center;
-        gap:14px;
-        padding:18px 0;
-    }
-
-    .logo{
-        font-size:26px;
-    }
-
-    nav ul{
-        gap:16px;
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-    nav a{
-        font-size:14px;
-    }
-
-    .hero{
-        grid-template-columns:1fr;
-        padding-top:40px;
-        gap:35px;
-        text-align:center;
-    }
-
-    .hero-text p{
-        margin:auto;
-    }
-
-    .about{
-        grid-template-columns:1fr;
-        gap:40px;
-        padding:90px 0;
-    }
-
-    .contact h2{
-        font-size:40px;
-    }
-}
-
-@media(max-width:600px){
-
-    .logo{
-        font-size:24px;
-    }
-
-    .hero-text h1{
-        font-size:48px;
-    }
-
-    .hero-text p{
-        font-size:16px;
-    }
-
-    .contact h2{
-        font-size:34px;
-    }
-
-    .card-content h3{
-        font-size:20px;
-    }
-
-    .work-grid{
-        grid-template-columns:1fr;
-    }
-}
-
-/* REVEAL ANIMATION */
 
 .reveal{
     opacity:0;
@@ -471,220 +386,277 @@ footer{
     opacity:1;
     transform:translateY(0);
 }
+
+@media(max-width:950px){
+
+.hero,
+.about{
+    grid-template-columns:1fr;
+}
+
+.hero{
+    text-align:center;
+}
+
+.hero-text p{
+    margin:auto;
+}
+
+.nav-container{
+    flex-direction:column;
+    gap:16px;
+}
+
+}
+
+@media(max-width:600px){
+
+.hero-text h1{
+    font-size:52px;
+}
+
+.contact h2{
+    font-size:38px;
+}
+
+.work-grid{
+    grid-template-columns:1fr;
+}
+
+}
+
 </style>
 </head>
 
-<body data-theme="dark">
+<body>
 
 <nav class="reveal">
-    <div class="container nav-container">
+<div class="container nav-container">
 
-        <div class="logo">
-            yng studio<span>.</span>
-        </div>
+<div class="logo">
+YNG Studio<span>.</span>
+</div>
 
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+<ul>
+<li><a href="#home" class="active">Home</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#work">Work</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 
-        <button id="theme-toggle" aria-label="Toggle theme">
-            <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-        </button>
-
-    </div>
+</div>
 </nav>
 
 <div class="container">
 
-    <section class="hero">
-        <div class="hero-text reveal">
-            <h1>
-                Graphic<br>
-                Designer<span>.</span>
-            </h1>
+<section class="hero" id="home">
 
-            <p>
-                I create clean visuals, branding, posters,
-                and social media designs that communicate
-                ideas clearly and professionally.
-            </p>
+<div class="hero-text reveal">
+<h1>
+Visual<br>
+Designer<span>.</span>
+</h1>
 
-            <a href="#work" class="hero-btn">View Portfolio</a>
-        </div>
+<p>
+Designing cinematic branding, modern posters,
+and sharp digital visuals inspired by minimalism,
+street culture, and contemporary design.
+</p>
 
-        <div class="hero-image reveal">
-            <img src="mypic.jpg" alt="designer">
-        </div>
-    </section>
+<a href="#work" class="hero-btn">
+View Portfolio
+</a>
 
-    <section class="about">
-        <div class="reveal">
-            <h3 class="section-title">ABOUT ME</h3>
-            <p>
-                Graphic designer based in Ethiopia,
-                specializing in minimal branding and visual identity.
-                I create clean, structured designs that communicate clearly and feel timeless.
-            </p>
-        </div>
+</div>
 
-        <div class="reveal">
-            <h3 class="section-title">TOOLS I USE</h3>
-            <div class="tools">
-                <div class="tool">Photoshop</div>
-                <div class="tool">Illustrator</div>
-                <div class="tool">Figma</div>
-                <div class="tool">Premiere Pro</div>
-                <div class="tool">CapCut</div>
-            </div>
-        </div>
-    </section>
+<div class="hero-image reveal">
+<img src="mypic.jpg" alt="YNG Studio" loading="lazy">
+</div>
 
-    <section class="work" id="work">
-        <h3 class="section-title reveal">SELECTED WORK</h3>
+</section>
 
-        <div class="work-grid">
-            <div class="card reveal">
-                <img src="pro1.png" alt="project">
-                <div class="card-content">
-                    <h3>Brand Identity</h3>
-                    <p>Minimal branding and visual identity design.</p>
-                </div>
-            </div>
+<section class="about">
 
-            <div class="card reveal">
-                <img src="pro2 (2).png" alt="project">
-                <div class="card-content">
-                    <h3>Poster Design</h3>
-                    <p>Clean and modern promotional poster design.</p>
-                </div>
-            </div>
+<div class="reveal">
+<h3 class="section-title">ABOUT ME</h3>
 
-            <div class="card reveal">
-                <img src="pro2.png" alt="project">
-                <div class="card-content">
-                    <h3>Social Media Design</h3>
-                    <p>Creative social media campaign visuals.</p>
-                </div>
-            </div>
+<p>
+I am a graphic designer based in Ethiopia focused on branding,
+poster design, and visual identity. My style combines clean structure,
+cinematic aesthetics, and modern digital culture to create visuals
+that feel bold, sharp, and timeless.
+</p>
+</div>
 
-            <div class="card reveal">
-                <img src="pro6.png" alt="project">
-                <div class="card-content">
-                    <h3>Logo Design</h3>
-                    <p>Professional logo and brand mark concepts.</p>
-                </div>
-            </div>
+<div class="reveal">
+<h3 class="section-title">TOOLS I USE</h3>
 
-            <div class="card reveal">
-                <img src="pro4.png" alt="project">
-                <div class="card-content">
-                    <h3>Flyer Design</h3>
-                    <p>Business and marketing flyer layout design.</p>
-                </div>
-            </div>
+<div class="tools">
+<div class="tool">Photoshop</div>
+<div class="tool">Illustrator</div>
+<div class="tool">Figma</div>
+<div class="tool">Premiere Pro</div>
+<div class="tool">CapCut</div>
+</div>
 
-            <div class="card reveal">
-                <img src="pro5.png" alt="project">
-                <div class="card-content">
-                    <h3>YouTube Thumbnail</h3>
-                    <p>High contrast and engaging thumbnail design.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+</div>
+</section>
 
-    <section class="contact" id="contact">
-        <h2 class="reveal">Let's Work Together</h2>
-        <p class="reveal">Email: emnetbekalu3412@gmail.com</p>
-        <p class="reveal">Telegram: @yng_Emnet</p>
-        <p class="reveal">Instagram: @em.net_yng</p>
+<section class="services" id="services">
 
-        <a href="https://t.me/yng_Emnet" target="_blank" class="contact-btn reveal">
-            Contact Me
-        </a>
-    </section>
+<h3 class="section-title reveal">SERVICES</h3>
 
-    <footer class="reveal">
-        © 2026 YNG Studio
-    </footer>
+<div class="services-grid">
+
+<div class="service-card reveal">
+<h3>Brand Identity</h3>
+<p>Minimal and modern branding systems with strong visual direction.</p>
+</div>
+
+<div class="service-card reveal">
+<h3>Poster Design</h3>
+<p>Cinematic and high impact posters for events and campaigns.</p>
+</div>
+
+<div class="service-card reveal">
+<h3>Social Media</h3>
+<p>Creative content systems and engaging visual campaigns.</p>
+</div>
+
+<div class="service-card reveal">
+<h3>Motion Visuals</h3>
+<p>Simple animated visuals and dynamic promotional edits.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="work" id="work">
+
+<h3 class="section-title reveal">SELECTED WORK</h3>
+
+<div class="work-grid">
+
+<div class="card reveal">
+<img src="pro1.png" alt="NOIR Brand" loading="lazy">
+<div class="card-content">
+<h3>NOIR Campaign</h3>
+<p>Streetwear campaign visuals with dark cinematic direction.</p>
+</div>
+</div>
+
+<div class="card reveal">
+<img src="pro2.png" alt="Kaffa Coffee" loading="lazy">
+<div class="card-content">
+<h3>Kaffa Coffee</h3>
+<p>Minimal coffee branding and social media design system.</p>
+</div>
+</div>
+
+<div class="card reveal">
+<img src="pro3.png" alt="Velocity Gym" loading="lazy">
+<div class="card-content">
+<h3>Velocity Fitness</h3>
+<p>Bold advertising visuals designed for modern fitness branding.</p>
+</div>
+</div>
+
+<div class="card reveal">
+<img src="pro4.png" alt="Astra Poster" loading="lazy">
+<div class="card-content">
+<h3>Astra Poster Series</h3>
+<p>Experimental poster collection using typography and motion blur.</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="contact" id="contact">
+
+<h2 class="reveal">Let's Work Together</h2>
+
+<div class="contact-links reveal">
+
+<a href="mailto:emnetbekalu3412@gmail.com">
+Email
+</a>
+
+<a href="https://instagram.com/em.net_yng" target="_blank">
+Instagram
+</a>
+
+<a href="https://t.me/yng_Emnet" target="_blank">
+Telegram
+</a>
+
+</div>
+
+</section>
+
+<footer>
+Minimal visuals. Strong identity.
+<br><br>
+© 2026 YNG Studio
+</footer>
 
 </div>
 
 <script>
-/* THEME */
-
-const toggleBtn = document.getElementById("theme-toggle");
-const body = document.body;
-
-const sunIcon = `
-<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="5"></circle>
-    <line x1="12" y1="1" x2="12" y2="3"></line>
-    <line x1="12" y1="21" x2="12" y2="23"></line>
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-    <line x1="1" y1="12" x2="3" y2="12"></line>
-    <line x1="21" y1="12" x2="23" y2="12"></line>
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-</svg>
-`;
-
-const moonIcon = `
-<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-</svg>
-`;
-
-const savedTheme = localStorage.getItem("theme");
-
-if(savedTheme){
-    body.setAttribute("data-theme", savedTheme);
-    toggleBtn.innerHTML = savedTheme === "dark" ? sunIcon : moonIcon;
-}
-
-toggleBtn.addEventListener("click", () => {
-    if(body.getAttribute("data-theme") === "dark"){
-        body.setAttribute("data-theme","light");
-        toggleBtn.innerHTML = moonIcon;
-        localStorage.setItem("theme","light");
-    } else {
-        body.setAttribute("data-theme","dark");
-        toggleBtn.innerHTML = sunIcon;
-        localStorage.setItem("theme","dark");
-    }
-});
-
-/* REVEAL ANIMATION */
 
 const reveals = document.querySelectorAll('.reveal');
 
-function revealOnScroll() {
-    const windowHeight = window.innerHeight;
+function revealOnScroll(){
 
-    reveals.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
+const windowHeight = window.innerHeight;
 
-        if (elementTop < windowHeight - 80) {
-            element.classList.add('show');
-        }
-    });
+reveals.forEach(element => {
+
+const elementTop = element.getBoundingClientRect().top;
+
+if(elementTop < windowHeight - 80){
+element.classList.add('show');
 }
 
-window.addEventListener('scroll', revealOnScroll);
-window.addEventListener('load', revealOnScroll);
+});
+
+}
+
+window.addEventListener('scroll',revealOnScroll);
+window.addEventListener('load',revealOnScroll);
+
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+
+let current = "";
+
+sections.forEach(section => {
+
+const sectionTop = section.offsetTop;
+
+if(pageYOffset >= sectionTop - 200){
+current = section.getAttribute("id");
+}
+
+});
+
+navLinks.forEach(link => {
+
+link.classList.remove("active");
+
+if(link.getAttribute("href").includes(current)){
+link.classList.add("active");
+}
+
+});
+
+});
+
 </script>
+
 </body>
 </html>
